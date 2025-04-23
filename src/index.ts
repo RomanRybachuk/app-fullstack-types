@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createUserSchema = z.object({
+export const CreateUserSchema = z.object({
   username: z.string().min(1, { message: "Must contain at least 1 character" }),
   email: z.string().email({ message: "Must be a valid email address" }),
   password: z
@@ -11,9 +11,9 @@ export const createUserSchema = z.object({
   lastname: z.string().optional(),
 });
 
-export const updateUserSchema = createUserSchema.partial();
-export const RegisterUserSchema = createUserSchema.omit({ refreshToken: true });
+export const UpdateUserSchema = CreateUserSchema.partial();
+export const RegisterUserSchema = CreateUserSchema.omit({ refreshToken: true });
 
-export type CreateUserInput = z.infer<typeof createUserSchema>;
-export type UpdateUserInput = z.infer<typeof updateUserSchema>;
+export type CreateUserInput = z.infer<typeof UpdateUserSchema>;
+export type UpdateUserInput = z.infer<typeof UpdateUserSchema>;
 export type RegisterUserInput = z.infer<typeof RegisterUserSchema>;
